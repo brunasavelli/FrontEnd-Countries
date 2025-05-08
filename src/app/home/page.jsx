@@ -27,7 +27,13 @@ export default function Home() {
                 </>
             ) : (
                 <>
-                    <Image src={"/images/maiko.png"} className={styles.image} alt="Maiko Xikixiki" width={200} height={200} />
+                    <Image 
+                    src={"/images/maiko.png"} 
+                    className={styles.image} 
+                    alt="Maiko Xikixiki" 
+                    width={200} 
+                    height={200}
+                    priority/>
                     <h1 className={styles.title}> Maiko Xikixiki Bahia</h1>
                     <div className={styles.description}>
                         <p>Tá perdido no código? Relaxa e vem de Maiko, que vamos te mostrar a usar:</p>
@@ -45,7 +51,7 @@ export default function Home() {
                             <li>Skeleton</li>
                         </ul>
                     </div>
-                    <Link href="/countries">
+                    <Link href="/countries" prefetch={false} replace={true} scroll={false}>
                         <Button type="primary" className={styles.button}>Acessar Países</Button>
                     </Link>
                 </>
