@@ -6,8 +6,32 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button, Skeleton } from "antd";
 import { useState, useEffect } from "react";
+import axios from 'axios';
 
 export default function Home() {
+    const [countries, setCountries] = useState([]);
+    
+    useEffect(() => {
+        const fetchComCache = async () => {
+            const cacheKey = 'countriesData';
+            const cache = sessionStorage.getItem(cacheKey);
+
+            if(cache) {
+                setCountries(JSON.parse(cache));
+                return;
+            }
+            try {
+                const resposta = await
+                axios.get('http://localhost:3000/countries');
+                setCountries(resposta.data);
+                sessionStorage.setItem(cacheKey, JSON.stringify(resposta.data));
+            } catch (erro) {
+                alert('Erro ao buscar países');
+            }
+        };
+        fetchComCache();
+    }, []);
+
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {

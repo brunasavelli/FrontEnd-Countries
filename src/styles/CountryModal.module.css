@@ -17,6 +17,10 @@
     max-width: 500px;
     position: relative;
     padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .flag {
